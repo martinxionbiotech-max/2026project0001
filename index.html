@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Next Blood Moon Checker | Lunar Eclipse Countdown, Visibility & FAQ</title>
+  <meta name="description" content="Next Blood Moon Checker helps you find the next blood moon date by country with local time, UTC time, visibility status, and a live days-left countdown." />
+  <meta name="keywords" content="next blood moon checker, blood moon checker, next blood moon date, lunar eclipse countdown, blood moon visibility" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <link rel="canonical" href="https://www.titaniumy.com/" />
+
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --card: #fff;
+      --text: #141827;
+      --muted: #5e657c;
+      --accent: #5b4df6;
+      --accent2: #8b5cf6;
+      --ok: #0f9a85;
+      --line: #e5e7eb;
+      --radius: 14px;
+      --shadow: 0 12px 26px rgba(10, 20, 50, 0.08);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background: linear-gradient(180deg, #f4f5ff 0%, var(--bg) 330px);
+    }
+    .container {
+      width: min(1000px, 92vw);
+      margin: 0 auto;
+      padding: 24px 0 48px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+    .hero {
+      background: radial-gradient(circle at right top, #eceaff 0%, #fff 50%);
+      padding: 26px;
+    }
+    h1 { margin: 0 0 10px; line-height: 1.2; font-size: clamp(1.6rem, 4vw, 2.35rem); }
+    h2 { margin: 0 0 10px; font-size: clamp(1.1rem, 2.4vw, 1.4rem); }
+    p { margin: 0 0 12px; color: var(--muted); line-height: 1.6; }
+    .toolbar { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+    .toolbar a {
+      text-decoration: none;
+      font-size: .85rem;
+      color: #1d4ed8;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 999px;
+      padding: 6px 12px;
+    }
+    .tool-grid {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    label { display: block; font-size: .92rem; color: var(--muted); margin-bottom: 6px; }
+    select, button {
+      width: 100%; height: 42px; border-radius: 10px; padding: 0 12px; font-size: .95rem;
+    }
+    select { border: 1px solid var(--line); background: #fff; }
+    button {
+      cursor: pointer;
+      border: 0;
+      color: #fff;
+      font-weight: 600;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+    }
+    .ghost { background: #eef2ff; color: #3c3298; border: 1px solid #c7d2fe; }
+    .actions { margin-top: 10px; display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+    .result {
+      margin-top: 12px;
+      border: 1px dashed #cbd5e1;
+      border-radius: 10px;
+      background: #f8fafc;
+      min-height: 118px;
+      padding: 12px;
+      font-size: .94rem;
+      line-height: 1.55;
+    }
+    .kpi { margin-top: 8px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+    .kpi div {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+      text-align: center;
+      font-weight: 700;
+      padding: 8px 4px;
+    }
+    .kpi span { display: block; font-size: .76rem; color: var(--muted); font-weight: 500; }
+    table { width: 100%; border-collapse: collapse; font-size: .92rem; }
+    th, td { border-bottom: 1px solid var(--line); padding: 10px 8px; text-align: left; }
+    details {
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 10px;
+      padding: 10px 12px;
+      margin-bottom: 10px;
+    }
+    @media (max-width: 780px) {
+      .tool-grid, .actions, .kpi { grid-template-columns: 1fr; }
+      .hero, .card { padding: 16px; }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the Next Blood Moon Checker?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Next Blood Moon Checker is an online tool that shows the next lunar eclipse date, local time, UTC time, visibility by country, and a live countdown."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does the Next Blood Moon Checker countdown work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The countdown subtracts your current time from the next blood moon UTC timestamp and displays the remaining days, hours, minutes, and seconds."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use Next Blood Moon Checker on mobile?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The page uses a mobile-friendly responsive layout and supports location-based country detection for quick checking."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why might the blood moon be not visible in my country?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Visibility depends on Earth rotation, local horizon, and whether the eclipse happens during nighttime in your location."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Next Blood Moon Checker",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "url": "https://www.titaniumy.com/",
+    "description": "Find the next blood moon by country, including local time, UTC time, visibility, and live countdown.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "Next blood moon lookup by country",
+      "Live days-hours-minutes-seconds countdown",
+      "Local time and UTC time display",
+      "Visibility status",
+      "Optional geolocation-based country guess"
+    ]
+  }
+  </script>
+</head>
+<body>
+  <main class="container">
+    <section class="card hero">
+      <h1>🌕 Next Blood Moon Checker</h1>
+      <p>Use this Next Blood Moon Checker to find the next lunar eclipse in your country. Instantly see local time, UTC time, visibility, and how many days are left until the event.</p>
+      <div class="toolbar">
+        <a href="#faq">Blood Moon FAQ</a>
+        <a href="#calendar">Blood Moon Calendar</a>
+      </div>
+    </section>
+
+    <section class="tool-grid" aria-label="next blood moon checker tools">
+      <article class="card">
+        <h2>Check Next Blood Moon</h2>
+        <label for="countrySelect">Country</label>
+        <select id="countrySelect"><option value="">Select country</option></select>
+        <div class="actions">
+          <button id="checkLunar">Check Next Blood Moon</button>
+          <button id="locateLunar" class="ghost">Use My Location</button>
+        </div>
+        <div id="lunarResult" class="result">Choose a country to begin.</div>
+      </article>
+
+      <article class="card">
+        <h2>Solar Eclipse Companion</h2>
+        <label for="solarCountrySelect">Country</label>
+        <select id="solarCountrySelect"><option value="">Select country</option></select>
+        <div class="actions">
+          <button id="checkSolar">Check Solar Eclipse</button>
+          <button id="locateSolar" class="ghost">Use My Location</button>
+        </div>
+        <div id="solarResult" class="result">Choose a country to begin.</div>
+      </article>
+    </section>
+
+    <section id="calendar" class="card" style="margin-top:14px;">
+      <h2>Upcoming Lunar and Solar Eclipse Dates (UTC)</h2>
+      <p>These sample events support the Next Blood Moon Checker experience and can be expanded with official astronomy feeds.</p>
+      <table>
+        <thead><tr><th>Date (UTC)</th><th>Type</th><th>Event</th></tr></thead>
+        <tbody id="eventsTable"></tbody>
+      </table>
+    </section>
+
+    <section id="faq" class="card" style="margin-top:14px;">
+      <h2>FAQ: Next Blood Moon Checker</h2>
+      <details open>
+        <summary>What is a blood moon?</summary>
+        <p>A blood moon is the reddish Moon seen during a total lunar eclipse when Earth’s atmosphere filters sunlight and bends red light onto the Moon.</p>
+      </details>
+      <details>
+        <summary>How accurate is this Next Blood Moon Checker?</summary>
+        <p>The countdown and conversion are time-accurate for the listed UTC event timestamps. Visibility is shown by country from the included dataset.</p>
+      </details>
+      <details>
+        <summary>Can I check next blood moon time in local timezone?</summary>
+        <p>Yes. The tool shows both local time and UTC for each upcoming event, so you can plan observation in your own timezone.</p>
+      </details>
+      <details>
+        <summary>Why display days left, not just date?</summary>
+        <p>Most users want a quick answer to "how long until the next blood moon". The days-left countdown is more intuitive than reading a timestamp alone.</p>
+      </details>
+      <details>
+        <summary>Can I use this on phone while traveling?</summary>
+        <p>Yes. Tap "Use My Location" after you arrive at your destination to refresh country selection and review likely visibility.</p>
+      </details>
+    </section>
+  </main>
+
+  <script>
+    const countries = ["Australia", "Brazil", "China", "India", "Singapore", "South Africa", "United Kingdom", "United States"];
+
+    const lunarData = [
+      { utc: "2026-05-15T03:12:00Z", type: "Total Lunar Eclipse", visibility: { "United States": "Total", "Singapore": "Partial", "United Kingdom": "Not Visible", "Australia": "Partial", "Brazil": "Not Visible", "South Africa": "Partial" } },
+      { utc: "2026-11-08T09:15:00Z", type: "Partial Lunar Eclipse", visibility: { "United States": "Partial", "Singapore": "Partial", "United Kingdom": "Partial", "Australia": "Partial", "Brazil": "Total", "South Africa": "Partial" } }
+    ];
+
+    const solarData = [
+      { utc: "2026-08-12T10:00:00Z", type: "Total Solar Eclipse", visibility: { "United States": "Partial", "Singapore": "Not Visible", "United Kingdom": "Total", "Australia": "Partial", "Brazil": "Not Visible", "South Africa": "Partial" } },
+      { utc: "2027-02-06T07:30:00Z", type: "Partial Solar Eclipse", visibility: { "United States": "Partial", "Singapore": "Partial", "United Kingdom": "Partial", "Australia": "Total", "Brazil": "Partial", "South Africa": "Not Visible" } }
+    ];
+
+    const countrySelect = document.getElementById("countrySelect");
+    const solarCountrySelect = document.getElementById("solarCountrySelect");
+
+    countries.forEach(c => {
+      countrySelect.add(new Option(c, c));
+      solarCountrySelect.add(new Option(c, c));
+    });
+
+    function getNextEvent(data) {
+      const now = new Date();
+      return data.find(e => new Date(e.utc) > now) || null;
+    }
+
+    function getCountdown(targetDate) {
+      const diff = targetDate - new Date();
+      if (diff <= 0) return null;
+      return {
+        d: Math.floor(diff / 86400000),
+        h: Math.floor((diff % 86400000) / 3600000),
+        m: Math.floor((diff % 3600000) / 60000),
+        s: Math.floor((diff % 60000) / 1000)
+      };
+    }
+
+    function renderEvent({ country, dataset, box, label }) {
+      const event = getNextEvent(dataset);
+      if (!event) {
+        box.textContent = `No upcoming ${label} data.`;
+        return;
+      }
+      const dt = new Date(event.utc);
+      const local = dt.toLocaleString(undefined, { dateStyle: "medium", timeStyle: "medium" });
+      const vis = event.visibility[country] || "Unknown";
+
+      box.innerHTML = `
+        <strong>Next ${label}</strong><br>
+        Country: ${country}<br>
+        Event Type: ${event.type}<br>
+        Local Time: ${local}<br>
+        UTC Time: ${dt.toISOString()}<br>
+        Visibility: <span style="color:var(--ok);font-weight:700">${vis}</span>
+        <div class="kpi">
+          <div id="d">-<span>Days</span></div>
+          <div id="h">-<span>Hours</span></div>
+          <div id="m">-<span>Minutes</span></div>
+          <div id="s">-<span>Seconds</span></div>
+        </div>
+      `;
+
+      const tick = () => {
+        const t = getCountdown(dt);
+        if (!t) return;
+        box.querySelector("#d").innerHTML = `${t.d}<span>Days</span>`;
+        box.querySelector("#h").innerHTML = `${t.h}<span>Hours</span>`;
+        box.querySelector("#m").innerHTML = `${t.m}<span>Minutes</span>`;
+        box.querySelector("#s").innerHTML = `${t.s}<span>Seconds</span>`;
+      };
+
+      tick();
+      clearInterval(box._timer);
+      box._timer = setInterval(tick, 1000);
+    }
+
+    async function guessCountryByLocation() {
+      if (!navigator.geolocation) throw new Error("Geolocation not supported");
+      const position = await new Promise((resolve, reject) => navigator.geolocation.getCurrentPosition(resolve, reject));
+      const { latitude: lat, longitude: lng } = position.coords;
+      if (lat > 24 && lng > -125 && lng < -66) return "United States";
+      if (lat > 49 && lng > -9 && lng < 2) return "United Kingdom";
+      if (lat < -10 && lng > 110 && lng < 154) return "Australia";
+      if (lat > 1 && lat < 2 && lng > 103 && lng < 105) return "Singapore";
+      if (lat < -10 && lng > -74 && lng < -34) return "Brazil";
+      if (lat < -22 && lng > 16 && lng < 33) return "South Africa";
+      return "India";
+    }
+
+    document.getElementById("checkLunar").onclick = () => {
+      const country = countrySelect.value;
+      if (!country) return alert("Please select a country.");
+      renderEvent({ country, dataset: lunarData, box: document.getElementById("lunarResult"), label: "Blood Moon" });
+    };
+
+    document.getElementById("checkSolar").onclick = () => {
+      const country = solarCountrySelect.value;
+      if (!country) return alert("Please select a country.");
+      renderEvent({ country, dataset: solarData, box: document.getElementById("solarResult"), label: "Solar Eclipse" });
+    };
+
+    document.getElementById("locateLunar").onclick = async () => {
+      try {
+        const country = await guessCountryByLocation();
+        countrySelect.value = country;
+        document.getElementById("checkLunar").click();
+      } catch {
+        alert("Location failed. Please select a country manually.");
+      }
+    };
+
+    document.getElementById("locateSolar").onclick = async () => {
+      try {
+        const country = await guessCountryByLocation();
+        solarCountrySelect.value = country;
+        document.getElementById("checkSolar").click();
+      } catch {
+        alert("Location failed. Please select a country manually.");
+      }
+    };
+
+    const allEvents = [
+      ...lunarData.map(x => ({ ...x, event: "Lunar" })),
+      ...solarData.map(x => ({ ...x, event: "Solar" }))
+    ].sort((a, b) => new Date(a.utc) - new Date(b.utc));
+
+    document.getElementById("eventsTable").innerHTML = allEvents
+      .map(e => `<tr><td>${new Date(e.utc).toISOString().replace("T", " ").slice(0, 16)}</td><td>${e.type}</td><td>${e.event}</td></tr>`)
+      .join("");
+  </script>
+</body>
+</html>
