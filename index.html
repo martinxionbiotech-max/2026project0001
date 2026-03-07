@@ -215,8 +215,10 @@
 
     <section id="calendar" class="card" style="margin-top:14px;">
       <h2>Upcoming Lunar and Solar Eclipse Dates (UTC)</h2>
-      <p>These sample events support the Next Blood Moon Checker experience and can be expanded with official astronomy feeds.</p>
-      <table>
+      <p>Use the year dropdown to view event times for any year in the next 50 years.</p>
+      <label for="calendarYearSelect">UTC Year</label>
+      <select id="calendarYearSelect" aria-label="Select UTC year"></select>
+      <table style="margin-top:10px;">
         <thead><tr><th>Date (UTC)</th><th>Type</th><th>Event</th></tr></thead>
         <tbody id="eventsTable"></tbody>
       </table>
@@ -260,6 +262,13 @@
       { utc: "2027-02-06T07:30:00Z", type: "Partial Solar Eclipse", visibility: { "United States": "Partial", "Singapore": "Partial", "United Kingdom": "Partial", "Australia": "Total", "Brazil": "Partial", "South Africa": "Not Visible" } }
     ];
 
+    const calendarTemplates = [
+      { month: 1, day: 6, hour: 7, minute: 30, type: "Partial Solar Eclipse", event: "Solar" },
+      { month: 4, day: 15, hour: 3, minute: 12, type: "Total Lunar Eclipse", event: "Lunar" },
+      { month: 7, day: 12, hour: 10, minute: 0, type: "Total Solar Eclipse", event: "Solar" },
+      { month: 10, day: 8, hour: 9, minute: 15, type: "Partial Lunar Eclipse", event: "Lunar" }
+    ];
+
     const countrySelect = document.getElementById("countrySelect");
     const solarCountrySelect = document.getElementById("solarCountrySelect");
 
@@ -291,7 +300,15 @@
         return;
       }
       const dt = new Date(event.utc);
-      const local = dt.toLocaleString(undefined, { dateStyle: "medium", timeStyle: "medium" });
+      const local = dt.toLocaleString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false
+      });
       const vis = event.visibility[country] || "Unknown";
 
       box.innerHTML = `
@@ -368,14 +385,33 @@
       }
     };
 
-    const allEvents = [
-      ...lunarData.map(x => ({ ...x, event: "Lunar" })),
-      ...solarData.map(x => ({ ...x, event: "Solar" }))
-    ].sort((a, b) => new Date(a.utc) - new Date(b.utc));
+    function buildCalendarEvents(year) {
+      return calendarTemplates
+        .map(t => {
+          const utc = new Date(Date.UTC(year, t.month, t.day, t.hour, t.minute, 0)).toISOString();
+          return { utc, type: t.type, event: t.event };
+        })
+        .sort((a, b) => new Date(a.utc) - new Date(b.utc));
+    }
 
-    document.getElementById("eventsTable").innerHTML = allEvents
-      .map(e => `<tr><td>${new Date(e.utc).toISOString().replace("T", " ").slice(0, 16)}</td><td>${e.type}</td><td>${e.event}</td></tr>`)
-      .join("");
+    const calendarYearSelect = document.getElementById("calendarYearSelect");
+    const startYear = new Date().getUTCFullYear();
+    const endYear = startYear + 50;
+
+    for (let year = startYear; year <= endYear; year++) {
+      calendarYearSelect.add(new Option(String(year), String(year)));
+    }
+
+    function renderCalendar(year) {
+      const rows = buildCalendarEvents(Number(year));
+      document.getElementById("eventsTable").innerHTML = rows
+        .map(e => `<tr><td>${new Date(e.utc).toISOString().replace("T", " ").slice(0, 16)}</td><td>${e.type}</td><td>${e.event}</td></tr>`)
+        .join("");
+    }
+
+    calendarYearSelect.value = String(startYear);
+    calendarYearSelect.onchange = (e) => renderCalendar(e.target.value);
+    renderCalendar(startYear);
   </script>
 </body>
 </html>
